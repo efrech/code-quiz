@@ -1,0 +1,106 @@
+* {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    color: #3e4246;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: flex-start;
+    background: linear-gradient(0deg, #e4dee4 0%, rgba(237,245,249,1) 63%);
+  }
+
+  .score-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  button {
+    background: radial-gradient(circle, rgb(232, 231, 228) 0%, rgba(100, 68, 108, 0.768) 100%);
+    border-radius: 8px;
+    color: #516375;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.5em;
+    letter-spacing: 0.10px;
+    line-height: 20px;
+    max-width: 255px;
+    padding: 20px 52px;
+    text-align: center;
+    transition-duration: 0.15s;
+    transition-property: background-color;
+    transition-timing-function: linear;
+    margin-top: 0.6em;
+  }
+  header {
+    padding: 40px;
+    text-align: center;
+    background: radial-gradient(linear, rgb(63, 130, 188) 0%, rgba(186, 201, 214, 0.954) 100%);
+    color: rgb(92, 88, 88);
+  }
+  main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  section {
+    flex: 0 auto;
+    padding: 8px;
+    margin-top: 50px;
+    border-radius: 8px;
+  }
+  .quiz-guess {
+    width: 55vw;
+    height: 400px;
+  }
+  .results {
+    width: 30vw;
+    height: 200px;
+  }
+  .card {
+    background: #b0c2d2;
+    border: 1px solid #75a5c5;
+    border-radius: 5px;
+    box-shadow: rgba(60, 64, 67, 2) 0 1px 2px 0,
+      rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .large-font {
+    font-size: 3em;
+    text-align:center;
+  }
+  .timer {
+    height: 200px;
+    padding: 10px;
+    background: #b0c2d2;
+    color: #fff;
+    text-align: center;
+  }
+  .timer-text {
+    padding: 40px;
+  }
+  @media screen and (max-width: 1183px) {
+    main {
+      flex-direction: column;
+    }
+    .quiz-guess,
+    .results {
+      width: 90vw;
+    }
+    section {
+      margin: 20px auto;
+      width: 92vw;
+    }
+  }
+  @media screen and (max-width: 504px) {
+    .large-font {
+      font-size: 2em;
+    }
+    .timer {
+      height: 150px;
+    }
+  }
