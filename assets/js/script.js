@@ -5,9 +5,6 @@ var displayDiv= document.getElementById("display");
 var gameScores= document.getElementsByClassName("score-container");
 
 //global variables
-// var highScores = [
-//   playe
-// ]
 var timeLeft = 76;
 var quizCompleted = false;
 var q = 0;
@@ -39,9 +36,18 @@ var myQuestions = [
         },
         correctAnswer: 'b'
       },
+      {
+        question: "What is the correct operator for equal value?",
+        answers: {
+          a: '=',
+          b: '===',
+          c: '=='
+        },
+        correctAnswer: 'c'
+      },
 ];
 
-//hide or prevent clock to start again
+
 //score will be based on timer, if question is wrong, time (15 seconds) substracted from timer
 //game is over when all myQuestions are answered or timer reaches 
 //when game is over, user enters initials
@@ -55,9 +61,12 @@ function countdown() {
     var timeInterval = setInterval(function(){
         timeLeft--;
         timeProgress.textContent = timeLeft;
+        //hide or prevent clock to start again
         if (quizCompleted === true){
           clearInterval(timeInterval);
-          var nameScore = window.prompt("Your score is " + timeLeft + " Enter Name:" );
+          //ask for name to store score
+          var nameScore = window.prompt("Your score is " + timeLeft + "." + " Enter your name:" );
+          //store highScore
           var highScores = JSON.parse(localStorage.getItem("highScores"));
           if (highScores == null) {
             localStorage.setItem("highScores", JSON.stringify([{"Name": nameScore, "Score": timeLeft}]));
@@ -78,7 +87,6 @@ function countdown() {
 function displayQuestion(questionObject, selectedAns) {
     var answers = questionObject["answers"];
     var question = questionObject["question"];
-    // var question = questionDis["question"];
     displayDiv.innerHTML = "<p>"+ question +"</p> <ul id='answers-list'></ul> <span id='question-result'></span>";
     for(answer in answers){
         var li = document.createElement("li"); //creates an li
@@ -89,12 +97,16 @@ function displayQuestion(questionObject, selectedAns) {
         li.appendChild(button);
         document.getElementById("answers-list").appendChild(li);
     }
+    //questions wrong or correct message
     if (selectedAns !== null){
       if (myQuestions[q-1]["correctAnswer"] === selectedAns) {
           document.getElementById("question-result").textContent= "Correct!";
       } else {
           document.getElementById("question-result").textContent= "Wrong!";
+           //substract timeInterval by 15 seconds
+          timeLeft = timeLeft - 15;
       }
+     
     }
   }
 //confirm correct/incorrect
@@ -120,7 +132,7 @@ function gameOver(){
 //show high scores
   }
 
-//funtion that starts quiz
+//funtion that starts quiz, reset values to default
 function startQuiz() {
   timeLeft = 76;
   quizCompleted = false;
