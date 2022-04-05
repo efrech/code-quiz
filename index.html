@@ -9,33 +9,18 @@
   <body>
     <header>
       <div class= "large-font">JavaScript fundamentals Quiz</div>
-      <div class= "card timer">
-        <div class = "timer-text">
-        <div class="large-font">60</div>
-        <h3>seconds remaining</h3>
-      </div>
-      </div>
+        <div class="large-font" id="countdown"></div>
     </header>
     <main>
       <section>
         <div class="card quiz-guess">
-          <div>Ready? press start to begin</div>
+          <div id="display"><p></p>Ready? press button Start Game to begin<ul id='answers-list'></ul></div>
         </div><button id="start">Start Game</button></div>
         </div>
       </section>
       <section>
-        <div class="card results">
-          <div class = "score-container">
-          <div>
+        <div class="card results score-container">
           <h2>High Scores</h2>
-          <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>
         </div>
       </section>
     </main>

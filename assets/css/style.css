@@ -13,10 +13,11 @@
   }
 
   .score-container {
-    display: flex;
+    display: none;
     justify-content: space-between;
     margin-top: 20px;
   }
+
   button {
     background: radial-gradient(circle, rgb(232, 231, 228) 0%, rgba(100, 68, 108, 0.768) 100%);
     border-radius: 8px;
@@ -39,6 +40,10 @@
     text-align: center;
     background: radial-gradient(linear, rgb(63, 130, 188) 0%, rgba(186, 201, 214, 0.954) 100%);
     color: rgb(92, 88, 88);
+  }
+
+  li {
+    list-style: none;
   }
   main {
     display: flex;
