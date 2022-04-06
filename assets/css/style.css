@@ -13,11 +13,32 @@
   }
 
   .score-container {
-    display: none;
+    display: flex;
     justify-content: space-between;
     margin-top: 20px;
   }
-
+  #high-scores-list {
+    background-color: #ccdbe9;
+    font-size: medium;
+    border: #3e4246 solid 1.5px;
+    max-width: 250px;
+  }
+  #show-scores {
+    background: rgb(54, 145, 187);
+    border-radius: 2px;
+    color: #e4dee4;
+    font-size: large;
+    font-weight: bold;
+    padding: 0.4em;
+    cursor: pointer;
+    letter-spacing: 0.10px;
+    text-align: center;
+    transition-duration: 0.15s;
+    transition-property: background-color;
+    transition-timing-function: linear;
+    margin-top: 0.9em;
+  }
+  
   .start-bttn {
     background: radial-gradient(circle, rgb(235, 222, 238) 0%, rgba(64, 36, 71, 0.768) 100%);
     border-radius: 8px;
@@ -35,6 +56,7 @@
     transition-timing-function: linear;
     margin-top: 0.6em;
   }
+
   button {
     background: rgb(214, 231, 239);
     border-radius: 2px;
@@ -85,7 +107,7 @@
     box-shadow: rgba(60, 64, 67, 2) 0 1px 2px 0,
       rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
     margin: auto;
-    padding: 20px;
+    padding: 15px;
   }
   
   .large-font {

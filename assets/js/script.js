@@ -1,10 +1,12 @@
-//global selectors
 var startBttn= document.getElementById("start");
 var timeProgress= document.getElementById("countdown");
 var displayDiv= document.getElementById("display");
 var gameScores= document.getElementsByClassName("score-container");
+var showScores= document.getElementById("show-scores");
+var highScoresUl=document.getElementById("high-scores-list");
 
 //global variables
+var highScores = [];
 var timeLeft = 76;
 var quizCompleted = false;
 var q = 0;
@@ -45,13 +47,17 @@ var myQuestions = [
         },
         correctAnswer: 'c'
       },
+      {
+        question: "What is DOM?",
+        answers: {
+          a: 'DOM stands for Document Object Model',
+          b: 'OM is a programming interface for HTML and XML documents',
+          c: 'All of the above'
+        },
+        correctAnswer: 'c'
+      },
 ];
 
-
-//score will be based on timer, if question is wrong, time (15 seconds) substracted from timer
-//game is over when all myQuestions are answered or timer reaches 
-//when game is over, user enters initials
-//Store high scores - localStorage
 //listener on start button, when click it starts the myQuestions
 startBttn.addEventListener("click", startQuiz);
 
@@ -67,16 +73,18 @@ function countdown() {
           //ask for name to store score
           var nameScore = window.prompt("Your score is " + timeLeft + "." + " Enter your name:" );
           //store highScore
-          var highScores = JSON.parse(localStorage.getItem("highScores"));
+          highScores = JSON.parse(localStorage.getItem("highScores"));
           if (highScores == null) {
             localStorage.setItem("highScores", JSON.stringify([{"Name": nameScore, "Score": timeLeft}]));
           } else {
             highScores.push({"Name": nameScore, "Score": timeLeft});
             localStorage.setItem("highScores", JSON.stringify(highScores));
           }
+          showHighScores();
           startBttn.disabled = false;
         } 
         if(timeLeft === 0){
+            gameOver();
             clearInterval(timeInterval);
             startBttn.disabled = false;
         }
@@ -105,8 +113,8 @@ function displayQuestion(questionObject, selectedAns) {
           document.getElementById("question-result").textContent= "Wrong!";
            //substract timeInterval by 15 seconds
           timeLeft = timeLeft - 15;
-      }
-     
+      };
+      gameOver()
     }
   }
 //confirm correct/incorrect
@@ -123,14 +131,12 @@ displayDiv.addEventListener("click", function(event) {
     }
   });
 
-//function displayScore & stops counter
+//when timeLeft =<14 end game and show a "GameOver" message
 function gameOver(){
-
-//show score
-//ask for name
-//store score & namee
-//show high scores
+  if (timeLeft <= 0){
+    window.alert("Game Over! try again");
   }
+}
 
 //funtion that starts quiz, reset values to default
 function startQuiz() {
@@ -139,6 +145,32 @@ function startQuiz() {
   q = 0;
   countdown();
   // for (let index = 0; index < myQuestions.length; index++) {
-  displayQuestion(myQuestions[q], null)
-  //   } 
+  displayQuestion(myQuestions[q], null) 
+}
+
+showScores.onclick = function() {
+  if (highScoresUl.style.display == 'none') {
+    showHighScores()
+    highScoresUl.style.display = 'block';
+  } else {
+    highScoresUl.style.display = 'none';
+  }
+};
+
+function showHighScores() {
+  highScoresUl.innerHTML = "";
+  //bring user input from localStorage
+  highScores = JSON.parse(localStorage.getItem("highScores"));
+  if(highScores === null || highScores.length === 0){
+    highScoresUl.textContent = "There are no high scores";
+  } else{
+    //show high to low
+    highScores.sort( function ( a, b ) { return b.Score - a.Score; } );
+    for(index in highScores.slice(0, 10)){
+      highScore = highScores[index];
+      var li = document.createElement("li"); //creates an li
+      li.textContent = "Name: " + highScore["Name"] + ", " + " Score: " + highScore["Score"];
+      highScoresUl.appendChild(li);
+    }
+  }
 }
