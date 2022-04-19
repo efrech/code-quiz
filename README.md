@@ -14,7 +14,7 @@ This web app is a timed coding quiz with multiple-choice questions. This app fea
 ```
 
 ## Mock-up
-![The Password Generator application](./Assets/images/Screen%20Shot%202022-04-05%20at%2010.32.00%20PM.png)
+![The Password Generator application](./assets/images/Screen%20Shot%202022-04-05%20at%2010.32.00%20PM.png)
 
 ## Get full access to code repository & live app: 
 
